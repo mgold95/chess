@@ -6,6 +6,7 @@
 
 int main (void)
 {
+    init_comm();
     printf("Hello, world!\n");
     return 0;
 }
