@@ -6,15 +6,15 @@ LFLAGS	=
 LIBS	= 
 
 HEADERS	= $(wildcard src/*.h)
-SRCS	= $(wildcard src/*.c)
-OBJS	= $(patsubst src/%.c, bin/%.o, $(SRCS))
+OBJS	= $(patsubst src/%.c, bin/%.o, $(wildcard src/*.c))
 
-.PHONY: default all clean
+.PHONY: default all clean Makefile
 
 default: $(TARGET)
 all: default
+	echo $(OBJS)
 
-%.o: $(SRCS) $(HEADERS)
+bin/%.o: src/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $< -o $@
 
 $(TARGET): $(OBJS)
