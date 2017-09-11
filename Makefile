@@ -11,10 +11,13 @@ OBJS	= $(patsubst src/%.c, bin/%.o, $(wildcard src/*.c))
 .PHONY: default all clean Makefile
 
 default: $(TARGET)
-all: default
+all: outdir default
 	echo $(OBJS)
 
-bin/%.o: src/%.c $(HEADERS)
+outdir:
+	@mkdir -p bin
+
+bin/%.o: src/%.c $(HEADERS) outdir
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJS)
