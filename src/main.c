@@ -1,12 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// main.c
+//
+// Provides general setup and command-line parsing.
+//
+// author: Michael Goldstein
+//
+
 // library includes
 #include <stdio.h>
 
 // project includes
-#include "comm.h"
+#include "uci.h"
+#include "info.h"
 
-int main (void)
+int main(void)
 {
-    init_comm();
-    printf("Hello, world!\n");
+    printf("%s version %s by %s.\n", NAME, VERSION, AUTHORS);
+    uci_loop();
     return 0;
 }

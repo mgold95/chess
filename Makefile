@@ -1,9 +1,9 @@
 TARGET	= chess
 
 CC		= gcc
-CFLAGS 	= -O3 -c
+CFLAGS 	= -std=c11 -O3
 LFLAGS	=
-LIBS	= 
+LIBS	= -lpthread
 
 HEADERS	= $(wildcard src/*.h)
 OBJS	= $(patsubst src/%.c, bin/%.o, $(wildcard src/*.c))
@@ -15,7 +15,7 @@ all: default
 	echo $(OBJS)
 
 bin/%.o: src/%.c $(HEADERS)
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) $(LFLAGS) $(LIBS) -o bin/$@
