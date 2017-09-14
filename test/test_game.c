@@ -1,11 +1,8 @@
-#include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
 
+#include "test_utils.h"
 #include "game.h"
 #include "test_game.h"
-
-static void fill_with_random(void* ptr, int nbytes);
 
 const struct CMUnitTest test_game_tests[TEST_GAME_NUM_TESTS] = {
     cmocka_unit_test(test_init_new_game),
@@ -103,12 +100,5 @@ void test_clone_state(void **state)
     assert_memory_equal(clone, new_state, sizeof(gamestate_t));
     free(new_state);
     free(clone);
-}
-
-static void fill_with_random(void* ptr, int nbytes)
-{
-    int fd = open("/dev/urandom", O_RDONLY);
-    read(fd, ptr, nbytes);
-    close(fd);
 }
 
